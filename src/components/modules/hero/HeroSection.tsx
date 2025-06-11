@@ -19,18 +19,18 @@ const HeroSection = () => {
             <CarouselComponent cardsList={projectCards} />
           </div>
           <div className="pt-8 px-4 md:px-8 flex flex-col gap-y-8 ">
-            <div className="flex flex-col gap-y-10 h-full w-2/3">
+            <div className="flex flex-col gap-y-10 h-full w-full md:w-2/3">
               <div className="flex flex-col   gap-x-8 gap-y-8">
-                <div className="flex gap-x-4">
+                <div className="flex gap-x-4 flex-col items-center gap-y-4 md:flex-row">
                   <AvatarComponent
                     className="w-36 h-36  p shadow-2xl border-slate-500 "
                     source="/images/avatar.jpg"
                     fallbackLetters="NG"
                   />
-                  <h1 className="text-4xl md:text-5xl ">
+                  <h1 className="text-4xl md:text-5xl text-center md:text-left ">
                     Narjes Ghaffari{" "}
                     <span className="dark:text-fuchsia-400 text-fuchsia-600 text-6xl block mt-3">
-                      {"the architech".toUpperCase()}
+                      {"the architecht".toUpperCase()}
                     </span>
                   </h1>{" "}
                 </div>
@@ -48,11 +48,11 @@ const HeroSection = () => {
                 </div>
               </div>
 
-              <div className="flex gap-2">
+              <div className="flex flex-col md:flex-row gap-2 w-full ">
                 <ButtonComponent
                   onClicked={() => redirect("/projects")}
                   label={
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2 ">
                       <FaBuilding />
                       My Projects
                     </div>
