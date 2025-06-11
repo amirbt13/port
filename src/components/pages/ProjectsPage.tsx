@@ -20,9 +20,9 @@ const ProjectsPage = ({ projects }: ProjectsPageProps) => {
               <Image
                 src={`/images/${project.name}/${project.cover}.jpg`}
                 alt={project.title}
-                width={300}
-                height={200}
-                className=" rounded-md h-full w-full"
+                width={400}
+                height={400}
+                className=" rounded-md max-w-full max-h-full"
               />
             </div>
           </CardComponent>

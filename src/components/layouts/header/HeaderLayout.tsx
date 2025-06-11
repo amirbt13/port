@@ -1,7 +1,7 @@
 import HeaderLogo from "@/components/modules/logo/HeaderLogo";
 import ThemeToggle from "@/components/modules/themeToggle/ThemeToggle";
 import Link from "next/link";
-import React from "react";
+import BurgerMenu from "@/components/layouts/header/BurgerMenu";
 
 const HeaderLayout = () => {
   return (
@@ -16,7 +16,8 @@ const HeaderLayout = () => {
         </Link>
       </div>
       <div className="navbar-end">
-        <ul>
+        <BurgerMenu />
+        <ul className="hidden md:flex gap-x-4">
           <li className=" hover:scale-110 hover:border-b border-black  transition-all duration-300 ">
             <Link href={"/projects"}>Projects</Link>
           </li>
