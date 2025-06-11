@@ -12,7 +12,7 @@ const HeroSection = () => {
   const { projectCards } = useProjectCard();
   return (
     <>
-      <div className="w-full h-full absolute left-0 top-0 bg-[url(/images/zarin/3.jpg)] bg-cover bg-center opacity-15 z-0"></div>
+      <div className="w-full h-full absolute left-0 top-0 bg-[url(/images/afra/2.jpg)] bg-cover bg-center opacity-15 z-0"></div>
       <div className="hero   p-6  z-10 relative">
         <div className="flex md:gap-x-8 gap-y-8 h-full flex-col-reverse md:flex-row ">
           <div className="w-5/6 md:w-1/3 lg:w-1/4 md:mr-6">
@@ -27,10 +27,10 @@ const HeroSection = () => {
                     source="/images/avatar.jpg"
                     fallbackLetters="NG"
                   />
-                  <h1 className="text-4xl md:text-5xl text-center md:text-left ">
+                  <h1 className="text-5xl md:text-5xl text-center md:text-left ">
                     Narjes Ghaffari{" "}
-                    <span className="dark:text-fuchsia-400 text-fuchsia-600 text-6xl block mt-3">
-                      {"the architecht".toUpperCase()}
+                    <span className=" text-3xl block text-lime-900 mt-3">
+                      {"architecht portfolio".toUpperCase()}
                     </span>
                   </h1>{" "}
                 </div>
