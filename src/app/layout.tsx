@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import MainLayout from "@/components/layouts/MainLayout";
 import MainProvider from "@/providers/MainProvider";
+import { yekan } from "@/utils/font";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -14,7 +15,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className=" bg-slate-100 dark:bg-gray-900">
+    <html
+      lang="en"
+      className={`${yekan.className} bg-slate-100 dark:bg-gray-900`}
+    >
       <body>
         <MainProvider>
           <MainLayout>{children}</MainLayout>

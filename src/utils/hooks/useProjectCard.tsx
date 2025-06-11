@@ -29,6 +29,7 @@ const useProjectCard = () => {
                 width={300}
                 height={200}
                 className=" rounded-md h-full w-full"
+                quality={70}
               />
             </div>
           </Link>

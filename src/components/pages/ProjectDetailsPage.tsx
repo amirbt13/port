@@ -12,7 +12,7 @@ const ProjectDetailsPage = ({ project }: ProjectDetailsPageProps) => {
   return (
     <div className="flex flex-col md:flex-row h-full">
       <main className=" flex-2/3 p-6 flex flex-col gap-6 h-full">
-        <div>
+        <div className=" w-full flex items-center justify-center min-h-[55vh]">
           <Image
             src={`/images/${project.name}/${selectedImage}.jpg`}
             alt={project.title}
@@ -45,9 +45,9 @@ const ProjectDetailsPage = ({ project }: ProjectDetailsPageProps) => {
         </div>
         <p>{project.description}</p>
         <div className=" mt-3">
-          <p>city: {project.city}</p>
+          <p>{project.city}</p>
           <p>
-            year: {project.dateYear} / {project.dateMonth}
+            {project.dateYear} / {project.dateMonth}
           </p>
         </div>
       </aside>

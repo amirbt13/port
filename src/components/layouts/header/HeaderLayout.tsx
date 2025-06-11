@@ -5,7 +5,7 @@ import React from "react";
 
 const HeaderLayout = () => {
   return (
-    <div className="navbar flex items-center justify-between py-4 dark:bg-slate-800 bg-slate-400 md:px-8 px-3 dark:text-white text-black">
+    <div className="navbar flex items-center justify-between py-4 dark:bg-slate-800 bg-slate-400 md:px-8 px-3 dark:text-white text-black relative z-20">
       <div className="navbar-start hidden md:block">
         <ThemeToggle />
       </div>
