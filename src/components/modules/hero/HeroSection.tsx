@@ -4,6 +4,9 @@ import useProjectCard from "@/utils/hooks/useProjectCard";
 import ButtonComponent from "@/components/UI/button/ButtonComponent";
 import AvatarComponent from "@/components/UI/avatart/AvatarComponent";
 import { redirect } from "next/navigation";
+import { FiDownload } from "react-icons/fi";
+import { FaUser } from "react-icons/fa";
+import { FaBuilding } from "react-icons/fa";
 
 const HeroSection = () => {
   const { projectCards } = useProjectCard();
@@ -46,11 +49,38 @@ const HeroSection = () => {
                 <p className=""></p>
               </div>
             </div>
-            <ButtonComponent
-              onClicked={() => redirect("/projects")}
-              label="بازدید نمونه کارها"
-              className="md:w-fit w-full px-8 py-5 cursor-pointer"
-            />
+            <div className="flex gap-2">
+              <ButtonComponent
+                onClicked={() => redirect("/projects")}
+                label={
+                  <div className="flex items-center gap-2">
+                    <FaBuilding />
+                    نمونه کارها
+                  </div>
+                }
+                className="md:w-fit w-full px-8 py-5 cursor-pointer bg-green-600 text-white"
+              />
+              <ButtonComponent
+                onClicked={() => null}
+                label={
+                  <div className="flex items-center gap-2">
+                    <FiDownload />
+                    دریافت رزومه
+                  </div>
+                }
+                className="md:w-fit w-full px-8 py-5 cursor-pointer bg-blue-800 text-white"
+              />
+              <ButtonComponent
+                onClicked={() => null}
+                label={
+                  <div className="flex items-center gap-2">
+                    <FaUser />
+                    درباره ی من
+                  </div>
+                }
+                className="md:w-fit w-full px-8 py-5 cursor-pointer bg-violet-600 text-white"
+              />
+            </div>
           </div>
         </div>
       </div>

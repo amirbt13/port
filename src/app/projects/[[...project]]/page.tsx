@@ -7,11 +7,12 @@ import { redirect } from "next/navigation";
 export default async function Page({
   params,
 }: {
-  params: { project: string };
+  params: Promise<{ project: string[] }>;
 }) {
   const { project } = await params;
   const projects: IProject[] = staticData;
-  if (!project) {
+
+  if (!project || project.length === 0) {
     // console.log("!project");
     return <ProjectsPage projects={projects} />;
   }
