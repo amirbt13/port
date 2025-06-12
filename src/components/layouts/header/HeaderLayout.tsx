@@ -21,6 +21,9 @@ const HeaderLayout = () => {
           <li className=" hover:scale-110 hover:border-b border-black  transition-all duration-300 ">
             <Link href={"/projects"}>Projects</Link>
           </li>
+          <li className=" hover:scale-110 hover:border-b border-black  transition-all duration-300">
+            <Link href={"/about-me"}>About Me</Link>
+          </li>
         </ul>
       </div>
     </div>

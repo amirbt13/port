@@ -36,12 +36,12 @@ const HeroSection = () => {
                 </div>
                 <div className="flex flex-col gap-y-2">
                   <p className=" font-light">
-                    With a creative view of form and space, architecture for me
-                    is a bridge between beauty, function and identity. In my
-                    designs, I strive to create balance between cultural
-                    origins, user needs and visual legibility. I am interested
-                    in projects that combine critical thinking, systematic
-                    approach and formal boldness.{" "}
+                    In this collection, you witness the precise intersection of
+                    concept, functionality, and aesthetics — where each project
+                    reflects a commitment to quality, innovation, and respect
+                    for the surrounding environment. I hope this portfolio
+                    conveys my professional vision and capabilities in creating
+                    sustainable and enduring spaces.
                   </p>
                   <p className=""></p>
                   <p className=""></p>
@@ -59,18 +59,20 @@ const HeroSection = () => {
                   }
                   className="md:w-fit w-full px-8 py-5 cursor-pointer bg-green-600 text-white"
                 />
+                <a href="/narjes_ghaffari_resume.pdf" download>
+                  <ButtonComponent
+                    label={
+                      <div className="flex items-center gap-2">
+                        <FiDownload />
+                        Download CV
+                      </div>
+                    }
+                    className="md:w-fit w-full px-8 py-5 cursor-pointer bg-blue-800 text-white"
+                    onClicked={() => null}
+                  />
+                </a>
                 <ButtonComponent
-                  onClicked={() => null}
-                  label={
-                    <div className="flex items-center gap-2">
-                      <FiDownload />
-                      Download CV
-                    </div>
-                  }
-                  className="md:w-fit w-full px-8 py-5 cursor-pointer bg-blue-800 text-white"
-                />
-                <ButtonComponent
-                  onClicked={() => null}
+                  onClicked={() => redirect("/about-me")}
                   label={
                     <div className="flex items-center gap-2">
                       <FaUser />

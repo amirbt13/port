@@ -33,7 +33,9 @@ const BurgerMenu = () => {
             <Link href={"/projects"}>Projects</Link>
           </li>
           <Separator />
-          <li className="w-full text-center">About Me</li>
+          <li className="w-full text-center">
+            <Link href={"/about-me"}>About Me</Link>
+          </li>
           <Separator />
         </ul>
         <div className="flex justify-between items-center mt-4">
