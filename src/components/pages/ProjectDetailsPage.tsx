@@ -43,7 +43,7 @@ const ProjectDetailsPage = ({ project }: ProjectDetailsPageProps) => {
           <h1 className=" text-6xl">{project.title}</h1>
           <h2 className=" text-2xl">{project.subtitle}</h2>
         </div>
-        <p>{project.description}</p>
+        <p dangerouslySetInnerHTML={{ __html: project.description }}></p>
         <div className=" mt-3">
           <p>{project.city}</p>
           <p>
