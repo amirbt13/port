@@ -18,6 +18,7 @@ const ProjectDetailsPage = ({ project }: ProjectDetailsPageProps) => {
             alt={project.title}
             width={400}
             height={400}
+            quality={60}
             className=" rounded-md border-2 border-slate-100"
           />
         </div>
@@ -29,6 +30,7 @@ const ProjectDetailsPage = ({ project }: ProjectDetailsPageProps) => {
               alt={project.title}
               width={100}
               height={100}
+              quality={60}
               className=" dark:border border-slate-100 rounded-md cursor-pointer"
               onClick={() => setSelectedImage(imageUrl)}
             />

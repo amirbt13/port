@@ -22,6 +22,7 @@ const ProjectsPage = ({ projects }: ProjectsPageProps) => {
                 alt={project.title}
                 width={400}
                 height={400}
+                quality={60}
                 className=" rounded-md max-w-full max-h-full"
               />
             </div>

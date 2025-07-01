@@ -12,7 +12,7 @@ const AboutMePage = () => {
         <Image
           src={TehUni}
           alt="Narjes Ghaffari in Tehran University"
-          quality={70}
+          quality={50}
           className="rounded-md w-[85%] md:w-full relative top-10 md:top-0 md:left-1/3 dark:border border-white"
         />
       </div>
