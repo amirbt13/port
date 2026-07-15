@@ -30,7 +30,9 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 
         const emailOk = email.toLowerCase() === adminEmail.toLowerCase();
         const passwordOk = await bcrypt.compare(password, adminHash);
+        console.log({ emailOk, passwordOk });
         if (!emailOk || !passwordOk) {
+          console.log({ emailOk, passwordOk });
           return null;
         }
 
