@@ -1,0 +1,50 @@
+import CardComponent from "@/components/UI/card/CardComponent";
+import { RootState } from "@/redux/store";
+import Image from "next/image";
+import Link from "next/link";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
+
+const useProjectCard = () => {
+  const [projectCards, setProjectCards] = React.useState<
+    {
+      component: React.ReactNode;
+      id: string;
+    }[]
+  >([]);
+
+  const projects = useSelector((state: RootState) => state.projects.projects);
+
+  useEffect(() => {
+    const cards = projects.map((project) => ({
+      component: (
+        <CardComponent title={project.title} subtitle={project.subtitle}>
+          <Link
+            href={`projects/${project.city}/${project.dateYear}/${project.dateMonth}/${project.title}`}
+          >
+            <div className="flex flex-col justify-center items-center h-100">
+              {project.cover_url ? (
+                <Image
+                  src={project.cover_url}
+                  alt={project.title}
+                  width={300}
+                  height={300}
+                  className=" rounded-md max-w-full max-h-full"
+                  quality={40}
+                />
+              ) : (
+                <div className="w-full h-full rounded-md bg-slate-200 dark:bg-slate-700" />
+              )}
+            </div>
+          </Link>
+        </CardComponent>
+      ),
+      id: project.id,
+    }));
+
+    setProjectCards(cards);
+  }, [projects]);
+  return { projectCards };
+};
+
+export default useProjectCard;
