@@ -1,12 +1,10 @@
-import React from "react";
+"use client";
+
 import { CarouselComponent } from "../carousel/CarouselComponent";
 import useProjectCard from "@/utils/hooks/useProjectCard";
-import ButtonComponent from "@/components/UI/button/ButtonComponent";
 import AvatarComponent from "@/components/UI/avatart/AvatarComponent";
-import { redirect } from "next/navigation";
-import { FiDownload } from "react-icons/fi";
-import { FaUser } from "react-icons/fa";
-import { FaBuilding } from "react-icons/fa";
+import Link from "next/link";
+import { ArrowDownRight, Download, FolderOpen } from "lucide-react";
 import { ISiteSettings } from "@/types/project";
 
 interface HeroSectionProps {
@@ -21,81 +19,81 @@ function initials(name: string): string {
 
 const HeroSection = ({ settings }: HeroSectionProps) => {
   const { projectCards } = useProjectCard();
-  return (
-    <>
-      <div
-        className="w-full h-full absolute left-0 top-0 bg-cover bg-center opacity-15 z-0"
-        style={
-          settings.heroBgUrl
-            ? { backgroundImage: `url(${settings.heroBgUrl})` }
-            : undefined
-        }
-      ></div>
-      <div className="hero   p-6  z-10 relative">
-        <div className="flex md:gap-x-8 gap-y-8 h-full flex-col-reverse md:flex-row ">
-          <div className="w-5/6 md:w-1/3 lg:w-1/4 md:mr-6">
-            <CarouselComponent cardsList={projectCards} />
-          </div>
-          <div className="pt-8 px-4 md:px-8 flex flex-col gap-y-8 ">
-            <div className="flex flex-col gap-y-10 h-full w-full md:w-2/3">
-              <div className="flex flex-col   gap-x-8 gap-y-8">
-                <div className="flex gap-x-4 flex-col items-center gap-y-4 md:flex-row">
-                  <AvatarComponent
-                    className="w-36 h-36  p shadow-2xl border-slate-500 "
-                    source={settings.avatarUrl || "/images/avatar.jpg"}
-                    fallbackLetters={initials(settings.fullName)}
-                  />
-                  <h1 className="text-5xl md:text-5xl text-center md:text-left ">
-                    {settings.fullName}{" "}
-                    <span className=" text-3xl block text-lime-900 mt-3">
-                      {settings.roleLabel.toUpperCase()}
-                    </span>
-                  </h1>{" "}
-                </div>
-                <div className="flex flex-col gap-y-2">
-                  <p className=" font-light">{settings.heroIntro}</p>
-                </div>
-              </div>
 
-              <div className="flex flex-col md:flex-row gap-2 w-full ">
-                <ButtonComponent
-                  onClicked={() => redirect("/projects")}
-                  label={
-                    <div className="flex items-center gap-2 ">
-                      <FaBuilding />
-                      My Projects
-                    </div>
-                  }
-                  className="md:w-fit w-full px-8 py-5 cursor-pointer bg-green-600 text-white"
-                />
-                <a href={settings.cvUrl || "#"} download target="_blank">
-                  <ButtonComponent
-                    label={
-                      <div className="flex items-center gap-2">
-                        <FiDownload />
-                        Download CV
-                      </div>
-                    }
-                    className="md:w-fit w-full px-8 py-5 cursor-pointer bg-blue-800 text-white"
-                    onClicked={() => null}
-                  />
-                </a>
-                <ButtonComponent
-                  onClicked={() => redirect("/about-me")}
-                  label={
-                    <div className="flex items-center gap-2">
-                      <FaUser />
-                      About Me
-                    </div>
-                  }
-                  className="md:w-fit w-full px-8 py-5 cursor-pointer bg-violet-600 text-white"
-                />
+  return (
+    <section className="site-container relative px-0 pb-12 pt-8 md:pb-20 md:pt-12">
+      <div className="glass-panel relative overflow-hidden rounded-[2rem] px-5 py-6 md:rounded-[2.5rem] md:px-10 md:py-12 lg:px-14 lg:py-16">
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-cover bg-center opacity-20 grayscale-[0.35] dark:opacity-25"
+          style={
+            settings.heroBgUrl
+              ? { backgroundImage: `url(${settings.heroBgUrl})` }
+              : undefined
+          }
+        />
+        <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-br from-background via-background/88 to-background/45" />
+        <div aria-hidden="true" className="absolute -right-20 -top-20 size-64 rounded-full bg-accent/10 blur-3xl" />
+
+        <div className="relative grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(20rem,0.64fr)] lg:items-end">
+          <div className="max-w-3xl">
+            <p className="eyebrow">Architecture portfolio · Tehran</p>
+            <div className="mt-8 flex flex-col gap-6 sm:flex-row sm:items-center">
+              <AvatarComponent
+                className="size-20 shrink-0 border-4 border-background shadow-2xl sm:size-24"
+                source={settings.avatarUrl || "/images/avatar.jpg"}
+                fallbackLetters={initials(settings.fullName)}
+              />
+              <div>
+                <h1 className="display-type text-5xl leading-[0.84] sm:text-6xl lg:text-8xl">
+                  {settings.fullName || "Narjes Ghaffari"}
+                </h1>
+                <p className="mt-3 text-xs font-bold tracking-[0.2em] text-accent uppercase sm:text-sm">
+                  {settings.roleLabel || "Architect"}
+                </p>
               </div>
             </div>
+            <p className="mt-8 max-w-xl text-base leading-8 text-muted-foreground md:text-lg">
+              {settings.heroIntro ||
+                "A collection of spaces shaped by context, material, and the quiet rituals of everyday life."}
+            </p>
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+              <Link href="/projects" className="button-primary">
+                View selected work
+                <FolderOpen size={17} aria-hidden="true" />
+              </Link>
+              {settings.cvUrl && (
+                <a
+                  href={settings.cvUrl}
+                  download
+                  target="_blank"
+                  rel="noreferrer"
+                  className="button-secondary"
+                >
+                  Download CV
+                  <Download size={17} aria-hidden="true" />
+                </a>
+              )}
+              <Link href="/about-me" className="button-secondary">
+                Studio notes
+                <ArrowDownRight size={17} aria-hidden="true" />
+              </Link>
+            </div>
+          </div>
+
+          <div className="min-w-0 lg:pb-1">
+            <div className="mb-4 flex items-end justify-between">
+              <div>
+                <p className="eyebrow">In focus</p>
+                <p className="mt-2 text-sm text-muted-foreground">A rotating selection of recent studies</p>
+              </div>
+              <span className="display-type text-4xl text-muted-foreground/50">01</span>
+            </div>
+            <CarouselComponent cardsList={projectCards} />
           </div>
         </div>
       </div>
-    </>
+    </section>
   );
 };
 

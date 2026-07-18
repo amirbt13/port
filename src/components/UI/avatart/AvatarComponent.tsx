@@ -17,9 +17,11 @@ const AvatarComponent = ({
   className,
 }: AvatarComponentProps) => {
   return (
-    <Avatar className={className}>
+    <Avatar className={`bg-secondary ${className ?? ""}`}>
       <AvatarImage src={source} width={400} height={400} />
-      <AvatarFallback>{fallbackLetters}</AvatarFallback>
+      <AvatarFallback className="bg-secondary font-bold text-muted-foreground">
+        {fallbackLetters}
+      </AvatarFallback>
     </Avatar>
   );
 };

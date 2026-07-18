@@ -1,12 +1,4 @@
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/public/components/ui/card";
 import React from "react";
-import BadgeComponent from "../badge/BadgeComponent";
 
 interface CardComponentProps {
   title: string;
@@ -16,15 +8,15 @@ interface CardComponentProps {
 
 const CardComponent = ({ title, subtitle, children }: CardComponentProps) => {
   return (
-    <Card className=" shadow-2xl  ">
-      <CardHeader>
-        <CardTitle className=" text-right text-xl">{title}</CardTitle>
-      </CardHeader>
-      <CardContent>{children}</CardContent>
-      <CardFooter>
-        <BadgeComponent variant={"default"}>{subtitle}</BadgeComponent>
-      </CardFooter>
-    </Card>
+    <article className="overflow-hidden rounded-[1.5rem] border border-border bg-card shadow-[0_18px_45px_rgb(24_24_27_/_8%)] transition-transform duration-200 hover:-translate-y-1">
+      <div className="p-5">
+        <p className="text-[0.65rem] font-bold tracking-[0.16em] text-muted-foreground uppercase">
+          {subtitle || "Selected work"}
+        </p>
+        <h2 className="mt-2 text-xl font-bold tracking-tight">{title}</h2>
+      </div>
+      {children}
+    </article>
   );
 };
 

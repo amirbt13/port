@@ -1,55 +1,73 @@
 "use client";
+
 import ThemeToggle from "@/components/modules/themeToggle/ThemeToggle";
+import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
-import { RxHamburgerMenu } from "react-icons/rx";
-import { IoClose } from "react-icons/io5";
 import Link from "next/link";
-import { Separator } from "@/public/components/ui/separator";
 import { usePathname } from "next/navigation";
+
+const links = [
+  { href: "/", label: "Home", index: "01" },
+  { href: "/projects", label: "Projects", index: "02" },
+  { href: "/about-me", label: "Studio", index: "03" },
+];
 
 const BurgerMenu = () => {
   const [menuIsOpen, setMenuIsOpen] = useState(false);
   const pathname = usePathname();
-  const openMenu = (open: boolean) => {
-    setMenuIsOpen(open);
-  };
 
-  useEffect(() => {
-    openMenu(false);
-  }, [pathname]);
+  useEffect(() => setMenuIsOpen(false), [pathname]);
+
   return (
-    <>
-      <div
-        className={`${
-          menuIsOpen ? "translate-y-none" : "-translate-y-full"
-        }  fixed top-0 left-0  w-full z-20 dark:bg-slate-950 transition-transform duration-150 bg-slate-300 p-3 pt-10`}
+    <div className="md:hidden">
+      <button
+        type="button"
+        onClick={() => setMenuIsOpen(true)}
+        className="flex size-11 items-center justify-center rounded-xl text-foreground transition-colors hover:bg-secondary"
+        aria-label="Open navigation menu"
+        aria-expanded={menuIsOpen}
       >
-        <ul className="flex flex-col justify-center items-center gap-y-4 dark:text-white text-slate-950">
-          <li className="w-full text-center">
-            <Link href={"/"}>Main</Link>
-          </li>
-          <Separator />
-          <li className="w-full text-center">
-            <Link href={"/projects"}>Projects</Link>
-          </li>
-          <Separator />
-          <li className="w-full text-center">
-            <Link href={"/about-me"}>About Me</Link>
-          </li>
-          <Separator />
-        </ul>
-        <div className="flex justify-between items-center mt-4">
-          <ThemeToggle />
-          <div>
-            <IoClose size={30} onClick={() => openMenu(false)} />
+        <Menu size={21} aria-hidden="true" />
+      </button>
+
+      {menuIsOpen && (
+        <div className="fixed inset-0 z-50 bg-foreground/30 p-3 backdrop-blur-sm">
+          <div className="glass-panel flex min-h-full flex-col rounded-[1.75rem] p-5">
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-bold tracking-[0.18em] text-muted-foreground uppercase">
+                Navigation
+              </span>
+              <button
+                type="button"
+                onClick={() => setMenuIsOpen(false)}
+                className="flex size-11 items-center justify-center rounded-xl bg-secondary text-foreground"
+                aria-label="Close navigation menu"
+              >
+                <X size={21} aria-hidden="true" />
+              </button>
+            </div>
+            <nav className="mt-12 flex flex-1 flex-col" aria-label="Mobile navigation">
+              {links.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="group flex items-center justify-between border-b border-border py-5 text-3xl font-semibold tracking-tight"
+                >
+                  <span>{link.label}</span>
+                  <span className="text-xs font-bold tracking-[0.16em] text-muted-foreground">
+                    {link.index}
+                  </span>
+                </Link>
+              ))}
+            </nav>
+            <div className="flex items-center justify-between border-t border-border pt-5">
+              <span className="text-sm text-muted-foreground">Choose your view</span>
+              <ThemeToggle />
+            </div>
           </div>
         </div>
-      </div>
-
-      <div className="md:hidden">
-        <RxHamburgerMenu size={30} onClick={() => openMenu(true)} />
-      </div>
-    </>
+      )}
+    </div>
   );
 };
 

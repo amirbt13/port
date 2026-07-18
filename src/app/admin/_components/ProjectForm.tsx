@@ -17,9 +17,8 @@ interface ProjectFormProps {
   project?: IProject;
 }
 
-const inputClass =
-  "rounded-md border border-slate-300 dark:border-slate-600 bg-transparent px-3 py-2 w-full";
-const labelClass = "flex flex-col gap-1 text-sm";
+const inputClass = "admin-input";
+const labelClass = "flex flex-col gap-2 text-sm font-semibold";
 
 export default function ProjectForm({
   action,
@@ -41,12 +40,17 @@ export default function ProjectForm({
   };
 
   return (
-    <form action={formAction} className="flex flex-col gap-5">
+    <form action={formAction} className="glass-panel flex flex-col gap-7 rounded-[1.75rem] p-6 md:p-9">
       {project && <input type="hidden" name="id" value={project.id} />}
       <input type="hidden" name="existingImages" value={JSON.stringify(kept)} />
       <input type="hidden" name="cover_url" value={coverUrl} />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div>
+        <p className="eyebrow">Project information</p>
+        <p className="mt-2 text-sm text-muted-foreground">The title and location become part of the public project route.</p>
+      </div>
+
+      <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
         <label className={labelClass}>
           Title
           <input
@@ -114,27 +118,27 @@ export default function ProjectForm({
           name="description"
           rows={12}
           defaultValue={project?.description}
-          className={`${inputClass} font-mono text-sm`}
+          className={`${inputClass} min-h-56 font-mono text-sm leading-6`}
         />
       </label>
 
       {kept.length > 0 && (
-        <div className="flex flex-col gap-2">
-          <p className="text-sm font-medium">
+        <div className="rounded-2xl border border-border bg-background/40 p-4">
+          <p className="text-sm font-bold">
             Current images — pick the cover, or remove any
           </p>
-          <div className="flex flex-wrap gap-3">
+          <div className="mt-4 flex flex-wrap gap-3">
             {kept.map((img) => (
               <div
                 key={img.path}
-                className="relative w-28 flex flex-col items-center gap-1 rounded-md border border-slate-200 dark:border-slate-700 p-2"
+                className="relative w-28 flex flex-col items-center gap-2 rounded-xl border border-border bg-card/60 p-2"
               >
                 <Image
                   src={img.url}
                   alt=""
                   width={96}
                   height={96}
-                  className="w-24 h-24 object-cover rounded"
+                  className="h-24 w-24 rounded-lg object-cover"
                 />
                 <label className="flex items-center gap-1 text-xs">
                   <input
@@ -148,7 +152,7 @@ export default function ProjectForm({
                 <button
                   type="button"
                   onClick={() => removeImage(img.path)}
-                  className="text-xs text-red-600"
+                  className="text-xs font-bold text-red-600 dark:text-red-300"
                 >
                   Remove
                 </button>
@@ -158,30 +162,30 @@ export default function ProjectForm({
         </div>
       )}
 
-      <label className={labelClass}>
+      <label className={`${labelClass} rounded-2xl border border-dashed border-border bg-background/35 p-5`}>
         Add images (you can select several)
         <input
           name="newImages"
           type="file"
           accept="image/*"
           multiple
-          className="text-sm"
+          className="text-sm text-muted-foreground"
         />
       </label>
 
-      {state.error && <p className="text-sm text-red-600">{state.error}</p>}
+      {state.error && <p role="alert" className="rounded-xl bg-red-500/10 px-4 py-3 text-sm font-semibold text-red-700 dark:text-red-200">{state.error}</p>}
 
       <div className="flex items-center gap-3">
         <button
           type="submit"
           disabled={isPending}
-          className="rounded-md bg-green-600 text-white px-5 py-2 font-medium disabled:opacity-60"
+          className="button-primary disabled:cursor-not-allowed disabled:opacity-60"
         >
           {isPending ? "Saving…" : submitLabel}
         </button>
         <Link
           href="/admin"
-          className="rounded-md border border-slate-300 dark:border-slate-600 px-5 py-2"
+          className="button-secondary"
         >
           Cancel
         </Link>

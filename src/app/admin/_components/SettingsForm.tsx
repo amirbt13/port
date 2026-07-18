@@ -5,9 +5,8 @@ import Link from "next/link";
 import { ISiteSettings } from "@/types/project";
 import { updateSettingsAction, type ActionState } from "../actions";
 
-const inputClass =
-  "rounded-md border border-slate-300 dark:border-slate-600 bg-transparent px-3 py-2 w-full";
-const labelClass = "flex flex-col gap-1 text-sm";
+const inputClass = "admin-input";
+const labelClass = "flex flex-col gap-2 text-sm font-semibold";
 
 export default function SettingsForm({
   settings,
@@ -20,8 +19,12 @@ export default function SettingsForm({
   );
 
   return (
-    <form action={formAction} className="flex flex-col gap-5">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <form action={formAction} className="glass-panel flex flex-col gap-7 rounded-[1.75rem] p-6 md:p-9">
+      <div>
+        <p className="eyebrow">Identity</p>
+        <p className="mt-2 text-sm text-muted-foreground">These details frame the public story across the home and studio pages.</p>
+      </div>
+      <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
         <label className={labelClass}>
           Full name
           <input
@@ -46,7 +49,7 @@ export default function SettingsForm({
           name="heroIntro"
           rows={4}
           defaultValue={settings.heroIntro}
-          className={inputClass}
+          className={`${inputClass} min-h-28 leading-6`}
         />
       </label>
 
@@ -56,12 +59,12 @@ export default function SettingsForm({
           name="aboutBio"
           rows={8}
           defaultValue={settings.aboutBio}
-          className={inputClass}
+          className={`${inputClass} min-h-48 leading-7`}
           dir="rtl"
         />
       </label>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
         <label className={labelClass}>
           Instagram URL
           <input
@@ -89,14 +92,14 @@ export default function SettingsForm({
         </label>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 gap-4 rounded-2xl border border-dashed border-border bg-background/35 p-5 md:grid-cols-3">
         <label className={labelClass}>
           Avatar / photo {settings.avatarUrl && "(replace)"}
-          <input name="avatar" type="file" accept="image/*" className="text-sm" />
+          <input name="avatar" type="file" accept="image/*" className="text-sm text-muted-foreground" />
         </label>
         <label className={labelClass}>
           Hero background {settings.heroBgUrl && "(replace)"}
-          <input name="heroBg" type="file" accept="image/*" className="text-sm" />
+          <input name="heroBg" type="file" accept="image/*" className="text-sm text-muted-foreground" />
         </label>
         <label className={labelClass}>
           CV (PDF) {settings.cvUrl && "(replace)"}
@@ -104,24 +107,24 @@ export default function SettingsForm({
             name="cv"
             type="file"
             accept="application/pdf"
-            className="text-sm"
+            className="text-sm text-muted-foreground"
           />
         </label>
       </div>
 
-      {state.error && <p className="text-sm text-red-600">{state.error}</p>}
+      {state.error && <p role="alert" className="rounded-xl bg-red-500/10 px-4 py-3 text-sm font-semibold text-red-700 dark:text-red-200">{state.error}</p>}
 
       <div className="flex items-center gap-3">
         <button
           type="submit"
           disabled={isPending}
-          className="rounded-md bg-green-600 text-white px-5 py-2 font-medium disabled:opacity-60"
+          className="button-primary disabled:cursor-not-allowed disabled:opacity-60"
         >
           {isPending ? "Saving…" : "Save personal info"}
         </button>
         <Link
           href="/admin"
-          className="rounded-md border border-slate-300 dark:border-slate-600 px-5 py-2"
+          className="button-secondary"
         >
           Cancel
         </Link>

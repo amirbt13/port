@@ -24,17 +24,13 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         const { email, password } = parsed.data;
         const adminEmail = process.env.ADMIN_EMAIL;
         const adminHash = process.env.ADMIN_PASSWORD_HASH;
-        console.log({ adminEmail, adminHash });
         if (!adminEmail || !adminHash) {
           return null;
         }
 
         const emailOk = email.toLowerCase() === adminEmail.toLowerCase();
         const passwordOk = await bcrypt.compare(password, adminHash);
-        console.log({ emailOk, passwordOk });
         if (!emailOk || !passwordOk) {
-          console.log({ emailOk, passwordOk });
-
           return null;
         }
 
