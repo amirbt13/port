@@ -32,7 +32,7 @@ const BurgerMenu = () => {
 
       {menuIsOpen && (
         <div className="fixed inset-0 z-50 bg-foreground/30 p-3 backdrop-blur-sm">
-          <div className="glass-panel flex min-h-full flex-col rounded-[1.75rem] p-5">
+          <div className="glass-panel bg-accent-foreground  flex min-h-full flex-col rounded-[1.75rem] p-5">
             <div className="flex items-center justify-between">
               <span className="text-xs font-bold tracking-[0.18em] text-muted-foreground uppercase">
                 Navigation
@@ -46,7 +46,10 @@ const BurgerMenu = () => {
                 <X size={21} aria-hidden="true" />
               </button>
             </div>
-            <nav className="mt-12 flex flex-1 flex-col" aria-label="Mobile navigation">
+            <nav
+              className="mt-12 flex flex-1 flex-col"
+              aria-label="Mobile navigation"
+            >
               {links.map((link) => (
                 <Link
                   key={link.href}
@@ -61,7 +64,9 @@ const BurgerMenu = () => {
               ))}
             </nav>
             <div className="flex items-center justify-between border-t border-border pt-5">
-              <span className="text-sm text-muted-foreground">Choose your view</span>
+              <span className="text-sm text-muted-foreground">
+                Choose your view
+              </span>
               <ThemeToggle />
             </div>
           </div>
